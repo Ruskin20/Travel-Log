@@ -30,17 +30,58 @@ const resolvers = {
       return { token, user };
     },
 
-    addUser: async (parent, args) => {
-      console.log("addUser");
-      console.log(parent);
-      console.log(args);
-      const user = await User.create(args);
-      const token = signToken(user);
+    saveRestaurant: async (parent, restaurant, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { savedRestaurants: restaurant } },
+          { new: true }
+        );
 
-      return { token, user };
+        return updatedUser;
+      }
+
+      throw new AuthenticationError("You need to be logged in!");
     },
+
+    removeRestaurant: async (parent, { restaurantId }, context) => {
+      if (context.user) {
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { savedRestaurants: { restaurantId: restaurantId } } },
+          { new: true }
+        );
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+
+    saveEntertainment: async (parent, entertainment, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { savedEntertainment: entertainment } },
+          { new: true }
+        );
+
+        return updatedUser;
+      }
+
+      throw new AuthenticationError("You need to be logged in!");
+    },
+
+    removeEntertainment: async (parent, { entertainmentId }, context) => {
+      if (context.user) {
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $pull: { savedEntertainment: { entertainmentId: entertainmentId } },
+          },
+          { new: true }
+        );
+      }
       throw new AuthenticationError("You need to be logged in!");
     },
   },
+};
 
 module.exports = resolvers;
