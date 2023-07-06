@@ -12,6 +12,10 @@ const entertainmentSchema = new Schema({
     type: String,
     required: true,
   },
+  entertainmentId: {
+    type: String,
+    required: true,
+  },
   image: {
     type: String,
   },
