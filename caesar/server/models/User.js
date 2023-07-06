@@ -3,6 +3,8 @@ const bcrypt = require('bcryptjs');
 
 // import schema from Restaurant.js
 const restaurantSchema = require('./Restaurant');
+// import schema from Entertainment.js
+const entertainmentSchema = require('./Entertainment');
 
 const userSchema = new Schema(
   {
