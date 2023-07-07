@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const RestaurantSchema = require('./Restaurant');
 const EntertainmentSchema = require('./Entertainment');
 
+
 const userSchema = new Schema(
   {
     username: {
