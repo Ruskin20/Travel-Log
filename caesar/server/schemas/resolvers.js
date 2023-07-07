@@ -65,11 +65,11 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
-    saveEntertainment: async (parent, entertainment, context) => {
+    saveVenue: async (parent, entertainment, context) => {
       if (context.user) {
         const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $push: { savedEntertainment: entertainment } },
+          { $push: { savedVenues: venue } },
           { new: true }
         );
 
@@ -79,12 +79,12 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
-    removeEntertainment: async (parent, { entertainmentId }, context) => {
+    removeVenue: async (parent, { venueId }, context) => {
       if (context.user) {
         return User.findOneAndUpdate(
           { _id: context.user._id },
           {
-            $pull: { savedEntertainment: { entertainmentId: entertainmentId } },
+            $pull: { savedVenues: { venueId: venueId } },
           },
           { new: true }
         );

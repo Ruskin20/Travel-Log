@@ -6,7 +6,7 @@ const typeDefs = gql`
     username: String!
     email: String!
     savedRestaurants: [Restaurant],
-    savedEntertainment: [Entertainment]
+    savedVenues: [Entertainment]
   }
 
   type Restaurant {
@@ -18,11 +18,16 @@ const typeDefs = gql`
   }
 
   type Entertainment {
-    entertainmentId: String!
+    venueId: String!
     venue_name: String!
     description: String!
     image: String
     link: String
+  }
+
+  type Auth {
+    token: ID
+    user: User
   }
 
   input RestaurantInput {
@@ -31,15 +36,10 @@ const typeDefs = gql`
     description: String!
   }
 
-  input EntertainmentInput {
-    entertainmentId: String!
+  input VenueInput {
+    venueId: String!
     venue_name: String!
     description: String!
-  }
-
-  type Auth {
-    token: ID
-    user: User
   }
 
   type Query {
@@ -66,8 +66,8 @@ const typeDefs = gql`
       link: String
     ): User
 
-    saveEntertainment(
-      entertainmentId: String!,
+    saveVenue(
+      venueId: String!,
       description: String!,
       venue_name: String!,
       image: String,
@@ -78,8 +78,8 @@ const typeDefs = gql`
       restaurantId: String!
     ): User
 
-    removeEntertainment(
-      entertainmentId: String!
+    removeVenue(
+      venueId: String!
     ): User
   }
 `;

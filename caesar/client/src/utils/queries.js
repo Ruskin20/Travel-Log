@@ -6,6 +6,21 @@ export const QUERY_ME = gql`
             _id
             username
             email
+            savedRestaurants {
+                restaurantId
+                restaurant_name
+                description
+                authors
+                image
+                link
+            }
+            savedVenues {
+                venueId
+                venue_name
+                description
+                image
+                link
+            }
         }
     }
 `;
