@@ -2,7 +2,8 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 // import schema from Restaurant.js
-const restaurantSchema = require('./Restaurant');
+const RestaurantSchema = require('./Restaurant');
+const EntertainmentSchema = require('./Entertainment');
 
 const userSchema = new Schema(
   {

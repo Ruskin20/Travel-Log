@@ -30,6 +30,16 @@ const resolvers = {
       return { token, user };
     },
 
+    addUser: async (parent, args) => {
+      console.log('addUser')
+      console.log(parent)
+      console.log(args)
+      const user = await User.create(args);
+      const token = signToken(user);
+      
+      return { token, user};
+    },
+
     saveRestaurant: async (parent, restaurant, context) => {
       if (context.user) {
         const updatedUser = await User.findByIdAndUpdate(
