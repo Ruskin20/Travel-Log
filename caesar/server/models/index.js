@@ -7,5 +7,4 @@ module.exports = {
     User,
     Entertainment,
     Restaurant,
-
 };
