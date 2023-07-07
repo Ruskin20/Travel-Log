@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const { AuthenticationError } = require('apollo-server-express');
 
 const secret = "mysecretsshhhhh";
 const expiration = "2h";
@@ -11,10 +12,11 @@ module.exports = {
     console.log("token1")
     console.log(token)
 
-    // ["Bearer", "<tokenvalue>"]
+    // Extract the token value from the "Bearer" scheme
     if (req.headers.authorization) {
       token = token.split(" ").pop().trim();
     }
+
     console.log('token2')
     console.log(token)
 
@@ -27,8 +29,20 @@ module.exports = {
       console.log('data')
       console.log(data)
       req.user = data;
-    } catch {
+      // Check if token is about to expire 
+      const currentTime = Math.floor(Date.now() / 1000);
+      const { exp } = jwt.decode(token);
+      const timeUntilExpiration = exp - currentTime;
+
+      // If token is about to expire, generate a new token and send it as a response header
+      if (timeUntilExpiration < 300) {
+        const newToken = this.signToken(data);
+        res.set('Authorization', newToken);
+      }
+
+    } catch (err) {
       console.log("Invalid token");
+      throw new AuthenticationError("Invalid token");
     }
 
     return req;
