@@ -1,12 +1,7 @@
 import React from 'react';
+import SiteContainer from './components/siteContainer';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-      </header>
-    </div>
-  );
-}
+
+const App = () => <SiteContainer />
 
 export default App;
