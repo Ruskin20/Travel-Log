@@ -29,8 +29,9 @@ function Cards() {
               label='Adventure'
               path='/option3'
             />
-         
           </ul>
+
+          
         </div>
       </div>
     </div>
