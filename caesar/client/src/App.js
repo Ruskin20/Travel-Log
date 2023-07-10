@@ -1,11 +1,28 @@
 import React from 'react';
+import Navbar from './componets/Navbar';
+import './App.css';
+import Home from './componets/pages/Home';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Option1 from './componets/pages/Option1';
+import Option2 from './componets/pages/Option2';
+import Signup from './componets/pages/SignUp';
 
+import Footer from './componets/Footer';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      </header>
-    </div>
+    <>
+      <Router>
+        <Navbar />
+       
+        <Switch>
+          <Route path='/' exact component={Home} />
+          <Route path='/option1' component={Option1} />
+          <Route path='/option2' component={Option2} />
+          <Route path='/sign-up' component={Signup} />
+          
+        </Switch>
+      </Router>
+    </>
   );
 }
 
