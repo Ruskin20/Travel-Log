@@ -2,7 +2,9 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 // import schema from Restaurant.js
-const restaurantSchema = require('./Restaurant');
+const RestaurantSchema = require('./Restaurant');
+const VenueSchema = require('./Entertainment');
+
 
 const userSchema = new Schema(
   {
@@ -23,8 +25,8 @@ const userSchema = new Schema(
     },
     // set savedRestaurants to be an array of data that adheres to the restaurantSchema
         savedRestaurants: [RestaurantSchema],
-    // set savedEntertainment to be an array of data that adheres to the entertainmentSchema
-        savedEntertainment: [EntertainmentSchema]
+    // set savedVenue to be an array of data that adheres to the venueSchema
+        savedVenues: [VenueSchema]
   },
   // set this to use virtual below
   {
@@ -54,9 +56,9 @@ userSchema.virtual('restaurantCount').get(function () {
   return this.savedRestaurants.length;
 });
 
-// when we query a user, we'll also get another field called `entertainmentCount` with the number of saved entertainment venues we have
-userSchema.virtual('entertainmentCount').get(function () {
-    return this.savedEntertainment.length;
+// when we query a user, we'll also get another field called `venueCount` with the number of saved entertainment venues we have
+userSchema.virtual('venueCount').get(function () {
+    return this.savedVenue.length;
   });
 
 const User = model('User', userSchema);
