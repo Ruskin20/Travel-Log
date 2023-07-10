@@ -6,9 +6,9 @@
   }
   
   .home,
-  .service,
+  .services,
   .products,
-  .sign-up {
+  .signUp {
     display: flex;
     height: 90vh;
     align-items: center;
@@ -16,7 +16,7 @@
     font-size: 3rem;
   }
   
-  .service{
+  .services {
     /* background-image: url('/images); */
     background-position: center;
     background-size: cover;

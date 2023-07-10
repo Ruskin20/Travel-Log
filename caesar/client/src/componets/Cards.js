@@ -10,13 +10,13 @@ function Cards() {
         <div className='cards__wrapper'>
           <ul className='cards__items'>
             <CardItem
-              // src='images/'
+              src='./images/FoodPic.jpg'
               text='We could put picture of Food here'
               label='Food'
               path='/option1'
             />
             <CardItem
-              // src='images/'
+              src='./images/EntertainmentPic.jpg'
               text='We could put picture of Entertainment here'
               label='Entertainment'
               path='/option2'
@@ -24,7 +24,7 @@ function Cards() {
           </ul>
           <ul className='cards__items'>
             <CardItem
-              // src='images/'
+              src='./images/AdventurePic.jpg'
               text='We could put picture of Adventure here'
               label='Adventure'
               path='/option3'
