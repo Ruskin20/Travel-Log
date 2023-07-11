@@ -12,7 +12,7 @@ const typeDefs = gql`
 
   type Restaurant {
     restaurantId: String!
-    restaurant_name: String!
+    restaurant_name: [String!]
     description: String!
     image: String
     link: String
@@ -20,7 +20,7 @@ const typeDefs = gql`
 
   type Entertainment {
     venueId: String!
-    venue_name: String!
+    venue_name: [String!]
     description: String!
     image: String
     link: String
@@ -28,7 +28,7 @@ const typeDefs = gql`
 
   type Adventure {
     adventureId: String!
-    adventure_name: String!
+    adventure_name: [String!]
     description: String!
     image: String
     link: String
