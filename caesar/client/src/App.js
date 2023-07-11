@@ -5,6 +5,7 @@ import Home from './componets/pages/Home';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Option1 from './componets/pages/Option1';
 import Option2 from './componets/pages/Option2';
+import Option3 from './componets/pages/Option3';
 import Signup from './componets/pages/SignUp';
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
           <Route path='/option1' component={Option1} />
           <Route path='/option2' component={Option2} />
           <Route path='/sign-up' component={Signup} />
-          
+          <Route path='/option3' component={Option3} />
         </Switch>
       </Router>
     </>
