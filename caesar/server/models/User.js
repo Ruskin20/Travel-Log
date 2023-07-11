@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 // import schema from Restaurant.js
 const RestaurantSchema = require('./Restaurant');
 const VenueSchema = require('./Entertainment');
+const AdventureSchema = require('./Adventure');
 
 
 const userSchema = new Schema(
@@ -26,7 +27,9 @@ const userSchema = new Schema(
     // set savedRestaurants to be an array of data that adheres to the restaurantSchema
         savedRestaurants: [RestaurantSchema],
     // set savedVenue to be an array of data that adheres to the venueSchema
-        savedVenues: [VenueSchema]
+        savedVenues: [VenueSchema],
+    // set savedAdventures to be an array of data that adheres to the adventureSchema
+        savedAdventures: [AdventureSchema]
   },
   // set this to use virtual below
   {
@@ -58,8 +61,13 @@ userSchema.virtual('restaurantCount').get(function () {
 
 // when we query a user, we'll also get another field called `venueCount` with the number of saved entertainment venues we have
 userSchema.virtual('venueCount').get(function () {
-    return this.savedVenue.length;
-  });
+    return this.savedVenues.length;
+});
+  
+// when we query a user, we'll also get another field called `venueCount` with the number of saved entertainment venues we have
+userSchema.virtual('adventureCount').get(function () {
+  return this.savedAdventures.length;
+});
 
 const User = model('User', userSchema);
 

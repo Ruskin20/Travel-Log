@@ -90,6 +90,33 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+    
+    saveAdventure: async (parent, adventure, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { savedAdventures: adventure } },
+          { new: true }
+        );
+
+        return updatedUser;
+      }
+
+      throw new AuthenticationError("You need to be logged in!");
+    },
+
+    removeAdventure: async (parent, { adventureId }, context) => {
+      if (context.user) {
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $pull: { savedAdventures: { adventureId: Id } },
+          },
+          { new: true }
+        );
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
   },
 };
 

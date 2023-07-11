@@ -21,6 +21,13 @@ export const QUERY_ME = gql`
                 image
                 link
             }
+            savedAdventures {
+                adventureId
+                adventure_name
+                description
+                image
+                link
+            }
         }
     }
 `;

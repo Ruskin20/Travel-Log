@@ -27,7 +27,7 @@ mutation loginUser($email: String!, $password: String!) {
 
 export const SAVE_RESTAURANT = gql`
     mutation saveRestaurant($restaurantId: String!, $description: String!, $restaurant_name: String! $image: String, $link: String) {
-        saveBook(restaurantId: $restaurantId, description: $description, restaurant_name: $restaurant_name image: $image, link: $link) {
+        saveRestaurant(restaurantId: $restaurantId, description: $description, restaurant_name: $restaurant_name image: $image, link: $link) {
             _id
             username
             email
@@ -52,7 +52,6 @@ export const REMOVE_RESTAURANT = gql`
         restaurantId
         description
         restaurant_name
-
       }
     }
   }
@@ -86,6 +85,38 @@ export const REMOVE_VENUE = gql`
         description
         venue_name
 
+      }
+    }
+  }
+`;
+
+export const SAVE_ADVENTURE = gql`
+    mutation saveAdventure($adventureId: String!, $description: String!, $adventure_name: String! $image: String, $link: String) {
+        saveAdventure(adventureId: $adventureId, description: $description, adventure_name: $adventure_name image: $image, link: $link) {
+            _id
+            username
+            email
+            savedAdventures {
+                adventureId
+                adventure_name
+                description
+                image
+                link
+            }
+        }
+    }
+`;
+
+export const REMOVE_ADVENTURE = gql`
+  mutation removeAdventure($adventureId: String!) {
+    removeAdventure(adventureId: $adventureId) {
+      _id
+      username
+      email
+      savedAdventures {
+        adventureId
+        description
+        adventure_name
       }
     }
   }
