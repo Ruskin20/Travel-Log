@@ -11,7 +11,7 @@ function Cards() {
           <ul className='cards__items'>
             <CardItem
               src='./images/FoodPic.jpg'
-              text='We could put picture of Food here'
+              text='Find your favorite food here'
               label='Food'
               path='/option1'
             />
