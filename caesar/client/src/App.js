@@ -7,7 +7,6 @@ import Option1 from './componets/pages/Option1';
 import Option2 from './componets/pages/Option2';
 import Signup from './componets/pages/SignUp';
 
-import Footer from './componets/Footer';
 function App() {
   return (
     <>
