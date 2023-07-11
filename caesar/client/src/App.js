@@ -1,10 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
-import SiteContainer from './components/siteContainer';
-
-
-const App = () => <SiteContainer />
-=======
 import Navbar from './componets/Navbar';
 import './App.css';
 import Home from './componets/pages/Home';
@@ -31,6 +25,5 @@ function App() {
     </>
   );
 }
->>>>>>> 41fe9dc3633199e4efd3591dd0ccaf93e04aec60
 
 export default App;
