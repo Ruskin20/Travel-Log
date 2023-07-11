@@ -6,12 +6,13 @@ const typeDefs = gql`
     username: String!
     email: String!
     savedRestaurants: [Restaurant],
-    savedVenues: [Entertainment]
+    savedVenues: [Entertainment],
+    savedAdventures: [Adventure]
   }
 
   type Restaurant {
     restaurantId: String!
-    restaurant_name: String!
+    restaurant_name: [String!]
     description: String!
     image: String
     link: String
@@ -19,7 +20,15 @@ const typeDefs = gql`
 
   type Entertainment {
     venueId: String!
-    venue_name: String!
+    venue_name: [String!]
+    description: String!
+    image: String
+    link: String
+  }
+
+  type Adventure {
+    adventureId: String!
+    adventure_name: [String!]
     description: String!
     image: String
     link: String
@@ -39,6 +48,12 @@ const typeDefs = gql`
   input VenueInput {
     venueId: String!
     venue_name: String!
+    description: String!
+  }
+
+  input AdventureInput {
+    adventureId: String!
+    adventure_name: String!
     description: String!
   }
 
@@ -73,6 +88,14 @@ const typeDefs = gql`
       image: String,
       link: String
     ): User
+
+    saveAdventure(
+      adventureId: String!,
+      description: String!,
+      adventure_name: String!,
+      image: String,
+      link: String
+    ): User
     
     removeRestaurant(
       restaurantId: String!
@@ -80,6 +103,10 @@ const typeDefs = gql`
 
     removeVenue(
       venueId: String!
+    ): User
+
+    removeAdventure(
+      adventureId: String!
     ): User
   }
 `;
