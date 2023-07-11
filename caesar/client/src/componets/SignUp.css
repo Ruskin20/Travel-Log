@@ -3,8 +3,12 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+
+    /* background-image: url('/caesar/client/public/images/homePic.jpg');
+  background-repeat: no-repeat;
+  background-size: cover; */
   }
-  
+ 
   .form-container {
     border: 1px solid #ccc;
     padding: 20px;
