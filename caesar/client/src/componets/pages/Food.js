@@ -1,11 +1,13 @@
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
+import '../Mapbox.css';
+import Footer from '../Footer';
 import "../Mapbox.css";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoibWF0dGhld3N0YW5kaXNoIiwiYSI6ImNsamhyMTFjMzAxY2MzZnA1cnA1bjVnZHYifQ.lAIJ-JvzD7DLfUkgB6apKg";
 
-export default function App() {
+export default function Food() {
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(-70.9);
@@ -32,11 +34,17 @@ export default function App() {
   });
 
   return (
+    
+    <>
     <div>
       <div className="sidebar">
         Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
       </div>
       <div ref={mapContainer} className="map-container" />
     </div>
+
+
+<Footer />
+</>
   );
 }
