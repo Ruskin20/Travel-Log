@@ -6,39 +6,40 @@
   }
   
   .home,
-  .services,
-  .products,
-  .signUp {
+  .option1,
+  .option2,
+  .option3,
+  /* .signU{
     display: flex;
     height: 90vh;
     align-items: center;
     justify-content: center;
     font-size: 3rem;
-  }
+  } */
   
-  .services {
+  .option1 {
     /* background-image: url('/images); */
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    color: #fff;
+    color: black;
     font-size: 100px;
   }
   
-  .products {
+  .option2 {
     /* background-image: url('/images'); */
     background-position: center;
     background-size: fill;
     background-repeat: no-repeat;
-    color: #fff;
+    color: black;
     font-size: 100px;
   }
   
-  .sign-up {
+  .option3{
     /* background-image: url('/images'); */
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    color: #fff;
+    color: black;
     font-size: 100px;
   }
