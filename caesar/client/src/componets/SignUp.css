@@ -1,12 +1,21 @@
-.SignUpPage {
+#SignUp {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     height: 100vh;
 
     /* background-image: url('/caesar/client/public/images/homePic.jpg');
   background-repeat: no-repeat;
   background-size: cover; */
+  }
+
+  #Login {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
   }
  
   .form-container {
