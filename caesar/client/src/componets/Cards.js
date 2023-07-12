@@ -5,13 +5,13 @@ import CardItem from './CardItem';
 function Cards() {
   return (
     <div className='cards'>
-      <h1>We could put a title here</h1>
+      <h1>Have the best time of your life!</h1>
       <div className='cards__container'>
         <div className='cards__wrapper'>
           <ul className='cards__items'>
             <CardItem
               src='./images/FoodPic.jpg'
-              text='We could put picture of Food here'
+              text='Find your favorite food here'
               label='Food'
               path='/option1'
             />
