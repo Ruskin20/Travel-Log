@@ -50,7 +50,8 @@ function App() {
           <Route path="/option3" component={Adventure} />
           <Route path="/sign-up" component={Signup} />
           <Route path="/login" component={Login} />
-        </Switch>
+          </Switch>
+          <ModalButton />
         </Router>
         </ApolloProvider>
     </>
