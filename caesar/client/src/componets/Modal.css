@@ -1,0 +1,29 @@
+.modal-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: beige;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 9999;
+}
+  
+.modal {
+  position: fixed;
+  bottom: 70px;
+  right: 20px;
+  background-color: beige;
+  height: 400px;
+  width: 300px;
+  border-radius: 5px;
+}
+
+.close-button {
+ border-radius: 5px;
+ position: fixed;
+ right: 25px;
+ bottom: 75px;
+}
