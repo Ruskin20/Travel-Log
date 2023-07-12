@@ -1,0 +1,39 @@
+.tracker-container {
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.budget {
+    margin-bottom: 5px;
+}
+
+.expense {
+    margin-bottom: 5px;
+}
+
+.amount {
+    margin-bottom: 5px;
+}
+
+.expense-list-container {
+    height: 180px;
+    max-height: 180px;
+    overflow-y: auto;
+}
+  
+.expense-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}

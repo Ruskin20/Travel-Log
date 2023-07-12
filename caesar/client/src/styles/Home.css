@@ -1,0 +1,12 @@
+.form {
+    text-align: center;
+    background-image: url('../assets/formimage.jpg');
+    background-size: 100% 150%;
+    border-top: 2px black solid;
+    border-bottom: 2px black solid;
+    height: 80vh;
+}
+
+.padTop {
+    padding-top: 50px;
+}

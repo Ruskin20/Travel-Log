@@ -7,20 +7,24 @@ import Food from "./componets/pages/Food";
 import Activities from "./componets/pages/Activities";
 import Adventure from "./componets/pages/Adventure";
 import Signup from "./componets/pages/SignUp";
+import { ModalButton } from './componets/Modal';
 
 function App() {
   return (
     <>
       <Router>
-        <Navbar />
-
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/option1" component={Food} />
-          <Route path="/option2" component={Activities} />
-          <Route path="/option3" component={Adventure} />
-          <Route path="/sign-up" component={Signup} />
-        </Switch>
+        <div className="app-container">
+            <Navbar />
+          
+            <Switch>
+              <Route path='/' exact component={Home} />
+              <Route path='/option1' component={Food} />
+              <Route path='/option2' component={Activities} />
+              <Route path='/option3' component={Adventure} />
+              <Route path='/sign-up' component={Signup} />
+            </Switch>
+        </div>
+        <ModalButton />
       </Router>
     </>
   );
