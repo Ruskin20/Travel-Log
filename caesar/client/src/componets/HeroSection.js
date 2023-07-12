@@ -5,6 +5,8 @@ import './HeroSection.css';
 import Auth from "../utils/auth";
 import { Link } from 'react-router-dom';
 
+
+
 function HeroSection() {
   if (Auth.loggedIn()) 
   return (
