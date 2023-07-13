@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import mapboxgl from "mapbox-gl";
 import axios from "axios";
 import { useMutation } from "@apollo/client";
-import { SAVE_ADVENTURE } from "../../utils/mutations"; // Update with the correct mutation name
+import { SAVE_ADVENTURE } from "../../utils/mutations";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 import "../Adventure.css";
-// Set your Mapbox access token
+
 mapboxgl.accessToken =
   "pk.eyJ1IjoibWF0dGhld3N0YW5kaXNoIiwiYSI6ImNsamhyMTFjMzAxY2MzZnA1cnA1bjVnZHYifQ.lAIJ-JvzD7DLfUkgB6apKg";
 
@@ -97,14 +97,14 @@ const App = () => {
   const handleSearch = async () => {
     try {
       const geocodingPromise = axios.get(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${zipCode}.json?types=postcode&access_token=${mapboxgl.accessToken}`
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${zipCode}.json?types=postcode&access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`
       );
 
       const geocodingResponse = await geocodingPromise;
       const [longitude, latitude] = geocodingResponse.data.features[0].center;
 
       const adventuresPromise = axios.get(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${poiType}.json?proximity=${longitude},${latitude}&access_token=${mapboxgl.accessToken}`
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${poiType}.json?proximity=${longitude},${latitude}&access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`
       );
 
       const adventuresResponse = await adventuresPromise;
