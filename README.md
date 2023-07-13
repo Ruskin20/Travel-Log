@@ -4,6 +4,8 @@
 
 ## Description
 
+Caesar is the start of a all-in-one vacation site!
+
 ## Table of contents
 
 - [Usage](#Usage)
@@ -28,6 +30,12 @@ To run the code locally:<br>
 ![](./caesar/client/public/images/Screenshot1.png)
 
 ## Credits
+- Jakob Stephens: Schemas / Models/ Routes 
+- Brian Adams: Schemas/Models/Backend
+- Ruskin Acevedo: Front End / Client Side
+- Matthew Standish: Mapbox/ API Routes 
+- Blake Sanders: Server Side /Api Routes
+
 
 ## License
 
