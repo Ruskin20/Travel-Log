@@ -42,6 +42,19 @@ video {
   margin: 6px;
 }
 
+.input {
+  display: flex;
+  height: 40px;
+}
+
+#zipForm {
+  display: flex;
+}
+
+#log {
+  color: #fff;
+}
+
 .fa-play-circle {
   margin-left: 4px;
 }

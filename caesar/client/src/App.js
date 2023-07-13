@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Food from "./componets/pages/Food";
 import Activities from "./componets/pages/Activities";
 import Adventure from "./componets/pages/Adventure";
-import { ModalButton } from './componets/Modal';
+import { ModalButton } from './componets/Modal'
 import Signup, {Login} from "./componets/pages/SignUp";
 import {
   ApolloClient,
@@ -41,8 +41,7 @@ function App() {
     <>
       <ApolloProvider client={client}>
       <Router>
-        <Navbar />
-
+          <Navbar />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/option1" component={Food} />
