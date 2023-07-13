@@ -6,13 +6,13 @@ import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
 
 function HeroSection() {
-  const [zipcode, setZipcode] = useState("")
-  const [showSuccess, setShowSuccess] = useState(false)
+  const [zipcode, setZipcode] = useState("");
+  const [showSuccess, setShowSuccess] = useState(false);
   function handleChange(event) {
-    setZipcode(event.target.value)
+    setZipcode(event.target.value);
   }
   function handleSubmit(event) {
-    event.preventDefault()
+    event.preventDefault();
     setShowSuccess(true);
   }
   console.log(zipcode);
