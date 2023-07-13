@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import mapboxgl from "mapbox-gl";
 import axios from "axios";
 import { useMutation } from "@apollo/client";
-import { saveRestaurant } from "../../utils/mutations";
+import { SAVE_RESTAURANT } from "../../utils/mutations";
 
 // Set your Mapbox access token
 mapboxgl.accessToken =
@@ -14,7 +14,7 @@ const App = () => {
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState([]);
 
-  const [saveRestaurant] = useMutation(saveRestaurant);
+  const [saveRestaurant] = useMutation(SAVE_RESTAURANT);
 
   useEffect(() => {
     const initializeMap = () => {
