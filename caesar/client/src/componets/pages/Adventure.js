@@ -5,6 +5,7 @@ import { useMutation } from "@apollo/client";
 import { SAVE_ADVENTURE } from "../../utils/mutations"; // Update with the correct mutation name
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
+import "../Adventure.css";
 // Set your Mapbox access token
 mapboxgl.accessToken =
   "pk.eyJ1IjoibWF0dGhld3N0YW5kaXNoIiwiYSI6ImNsamhyMTFjMzAxY2MzZnA1cnA1bjVnZHYifQ.lAIJ-JvzD7DLfUkgB6apKg";
@@ -156,7 +157,7 @@ const App = () => {
 
       <button onClick={handleSearch}>Search</button>
 
-      <ul>
+      <ul className="List__">
         {adventures.map((adventure) => (
           <li key={adventure.id}>
             {adventure.place_name}

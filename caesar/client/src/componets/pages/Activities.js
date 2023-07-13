@@ -4,6 +4,7 @@ import axios from "axios";
 import { useMutation } from "@apollo/client";
 import { SAVE_VENUE } from "../../utils/mutations"; // Update with the correct mutation name
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import "../Act.css";
 
 // Set your Mapbox access token
 mapboxgl.accessToken =
@@ -160,7 +161,7 @@ const App = () => {
 
       <button onClick={handleSearch}>Search</button>
 
-      <ul>
+      <ul className="List__ul">
         {activities.map((activity) => (
           <li key={activity.id}>
             {activity.place_name}

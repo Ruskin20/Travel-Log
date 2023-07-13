@@ -1,0 +1,124 @@
+/* Map Container */
+#map {
+    height: 400px;
+  }
+  
+  /* Input and Select Styles */
+  input[type="text"],
+  select {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  /* Search Button */
+  button {
+    display: block;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Adventures List */
+ .List__ {
+    list-style: none;
+    padding: 0;
+  }
+  
+ .List__ {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+  }
+  
+  .List__:hover {
+    transform: translateY(-2px);
+  }
+  
+  .List__::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -16px;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: #007bff;
+    border-radius: 50%;
+  }
+  
+  .List__:last-child::before {
+    display: none;
+  }
+  
+  .List__ h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .List__ button {
+    padding: 5px 10px;
+    margin-left: 10px;
+    background-color: #007bff;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .List__ button:hover {
+    background-color: #0056b3;
+  }
+  
+  .List__:hover button {
+    background-color: #0056b3;
+  }
+  
+  /* Popup */
+  .mapboxgl-popup {
+    max-width: 250px;
+    font-size: 16px;
+  }
+  
+  .mapboxgl-popup-content {
+    padding: 10px;
+  }
+  
+  .mapboxgl-popup-close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 14px;
+    background-color: transparent;
+    color: #999;
+    cursor: pointer;
+  }
+  
+  .mapboxgl-popup-close-button:hover {
+    color: #666;
+  }
+  
+
+  

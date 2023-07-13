@@ -13,13 +13,13 @@ function Cards() {
               src='./images/FoodPic.jpg'
               text='Find your favorite food here'
               label='Food'
-              path='/option1'
+              path='/food'
             />
             <CardItem
               src='./images/EntertainmentPic.jpg'
               text='Find your favorite entertainment here'
               label='Entertainment'
-              path='/option2'
+              path='/entertainment'
             />
           </ul>
           <ul className='cards__items'>
@@ -27,7 +27,7 @@ function Cards() {
               src='./images/AdventurePic.jpg'
               text='Find your favorite adventure here'
               label='Adventure'
-              path='/option3'
+              path='/adventures'
             />
           </ul>
 

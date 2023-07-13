@@ -5,6 +5,8 @@ import { useMutation } from "@apollo/client";
 import { SAVE_RESTAURANT } from "../../utils/mutations";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
+import "../Mapbox.css";
+
 mapboxgl.accessToken =
   "pk.eyJ1IjoibWF0dGhld3N0YW5kaXNoIiwiYSI6ImNsamhyMTFjMzAxY2MzZnA1cnA1bjVnZHYifQ.lAIJ-JvzD7DLfUkgB6apKg";
 
@@ -43,8 +45,8 @@ const App = () => {
 
   useEffect(() => {
     if (map && restaurants.length > 0) {
-      // Clear existing markers
-      markers.forEach((marker) => marker.remove());
+  // Clear existing markers     
+   markers.forEach((marker) => marker.remove());
       setMarkers([]);
 
       restaurants.forEach((restaurant) => {
@@ -57,8 +59,8 @@ const App = () => {
         );
 
         marker.setPopup(popup);
-
         marker.addTo(map);
+
         setMarkers((prevMarkers) => [...prevMarkers, marker]);
       });
     }
@@ -95,30 +97,27 @@ const App = () => {
 
   const handleSearch = async () => {
     try {
-      const geocodingPromise = axios.get(
+      const response = await axios.get(
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${zipCode}.json?types=postcode&access_token=${mapboxgl.accessToken}`
       );
 
-      const geocodingResponse = await geocodingPromise;
-      const [longitude, latitude] = geocodingResponse.data.features[0].center;
+      const [longitude, latitude] = response.data.features[0].center;
 
-      const restaurantsPromise = axios.get(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${poiType}.json?proximity=${longitude},${latitude}&access_token=${mapboxgl.accessToken}`
+      const restaurantsResponse = await axios.get(
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/restaurant.json?proximity=${longitude},${latitude}&access_token=${mapboxgl.accessToken}`
       );
 
-      const restaurantsResponse = await restaurantsPromise;
-      const restaurants = restaurantsResponse.data.features;
-
-      setRestaurants(restaurants);
+      setRestaurants(restaurantsResponse.data.features);
     } catch (error) {
       console.error("Error searching for restaurants:", error);
     }
   };
-
+  
+  
   const handleSaveRestaurant = async (restaurant) => {
     try {
-      // Make a request to save the restaurant using the mutation
-      await saveRestaurant({
+// Make a request to save the restaurant using the mutation      
+await saveRestaurant({
         variables: {
           restaurantId: restaurant.id,
           restaurant_name: restaurant.place_name,
@@ -135,8 +134,8 @@ const App = () => {
   };
 
   return (
-    <div>
-      <div id="map" style={{ height: "400px" }}></div>
+    <div className="container">
+      <div id="map" className="map"></div>
 
       <input
         type="text"
@@ -144,27 +143,12 @@ const App = () => {
         onChange={handleZipCodeChange}
         placeholder="Enter ZIP code"
       />
-
-      <select value={poiType} onChange={handlePoiTypeChange}>
-        <option value="">Select POI Type</option>
-        <option value="breakfast_restaurant">Breakfast</option>
-        <option value="brunch_restaurant">Brunch</option>
-        <option value="dinner_restaurant">Dinner</option>
-        <option value="cafe">Cafe</option>
-        <option value="mexican_restaraunt">Mexican</option>
-        <option value="american_restaraunt">American</option>
-        <option value="asian_restaurant">Asian</option>
-        <option value="chinese_restaurant">Chinese</option>
-        <option value="mediterranean_restaurant">Mediteranean</option>
-        <option value="barbeque_restaurant">Barbeque</option>
-      </select>
-
       <button onClick={handleSearch}>Search</button>
 
-      <ul>
+      <ul className="restaurant-list">
         {restaurants.map((restaurant) => (
           <li key={restaurant.id}>
-            {restaurant.place_name}
+            {restaurant.place_name}{" "}
             <button onClick={() => handleSaveRestaurant(restaurant)}>
               Save
             </button>
