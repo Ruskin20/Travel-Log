@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Card, Button, Row, Col } from "react-bootstrap";
+import './SavedPlaces.css';
 
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
@@ -58,9 +59,9 @@ const SavedRestaurants = () => {
   return (
     <Col md="4" key={restaurant.restaurantId}>
       <Card border='dark'>
-        <Card.Body>
+        <Card.Body className="list">
           <Card.Title>{restaurant.restaurant_name}</Card.Title>
-          <Button className='btn-block btn-danger' onClick={() => handleDeleteRestaurant(restaurant.restaurantId)}>
+          <Button id="delete" className='btn-block btn-danger' onClick={() => handleDeleteRestaurant(restaurant.restaurantId)}>
             Delete this Restaurant!
           </Button>
         </Card.Body>

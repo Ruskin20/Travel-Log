@@ -3,9 +3,10 @@ import "../App.css";
 import { Button } from "./Button";
 import "./HeroSection.css";
 import Auth from "../utils/auth";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 function HeroSection() {
+  let history = useHistory();
   const [zipcode, setZipcode] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
   function handleChange(event) {
@@ -14,6 +15,7 @@ function HeroSection() {
   function handleSubmit(event) {
     event.preventDefault();
     setShowSuccess(true);
+    history.push('/option1', {zipcode})
   }
   console.log(zipcode);
   if (Auth.loggedIn())
