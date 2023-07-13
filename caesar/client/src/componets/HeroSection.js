@@ -5,6 +5,8 @@ import './HeroSection.css';
 import Auth from "../utils/auth";
 import { Link } from 'react-router-dom';
 
+
+
 function HeroSection() {
   if (Auth.loggedIn()) 
   return (
@@ -20,7 +22,7 @@ function HeroSection() {
               type='search'
               placeholder='Enter zip code'
             />
-            <Button buttonStyle='btn--primary'>Search</Button>
+            <Button>Search</Button>
           </form>
       </div>
     </div>
