@@ -71,6 +71,15 @@ function Navbar() {
             </li>
             <li className='nav-item'>
               <Link
+                to='/savedplaces'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Saved
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
                 to='/'
                 className='nav-links'
                 onClick={() => Auth.logout()}
@@ -124,7 +133,7 @@ function Navbar() {
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Adventures
+                Adventure
               </Link>
             </li>
 

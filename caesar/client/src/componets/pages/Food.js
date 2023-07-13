@@ -3,6 +3,7 @@ import mapboxgl from "mapbox-gl";
 import axios from "axios";
 import { useMutation } from "@apollo/client";
 import { SAVE_RESTAURANT } from "../../utils/mutations";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 import "../Mapbox.css";
 
@@ -10,13 +11,18 @@ mapboxgl.accessToken =
   "pk.eyJ1IjoibWF0dGhld3N0YW5kaXNoIiwiYSI6ImNsamhyMTFjMzAxY2MzZnA1cnA1bjVnZHYifQ.lAIJ-JvzD7DLfUkgB6apKg";
 
 const App = () => {
-  const [zipCode, setZipCode] = useState("");
+  const history = useHistory();
+  const [zipCode, setZipCode] = useState(history.location.state?.zipcode);
   const [restaurants, setRestaurants] = useState([]);
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState([]);
 
   const [saveRestaurant] = useMutation(SAVE_RESTAURANT);
-
+  useEffect(() => {
+    if (zipCode) {
+      handleSearch()
+    }
+  },[])
   useEffect(() => {
     const initializeMap = () => {
       const newMap = new mapboxgl.Map({
@@ -105,8 +111,9 @@ await saveRestaurant({
         },
       });
 
-// Display a success message or update your UI accordingly  
-    console.log("Restaurant saved successfully!");
+      // Display a success message or update your UI accordingly
+      console.log("Restaurant saved successfully!");
+      console.log(restaurant)
     } catch (error) {
       console.error("Error saving restaurant:", error);
     }
