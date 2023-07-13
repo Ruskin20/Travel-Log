@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import mapboxgl from "mapbox-gl";
 import axios from "axios";
+import { useMutation } from "@apollo/client";
+import { SAVE_RESTAURANT } from "../../utils/mutations"; // Replace with your actual mutation
 
 // Set your Mapbox access token
 mapboxgl.accessToken =
@@ -11,6 +13,8 @@ const App = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState([]);
+
+  const [saveRestaurant] = useMutation(SAVE_RESTAURANT); // Replace with your actual mutation
 
   useEffect(() => {
     const initializeMap = () => {
@@ -85,6 +89,24 @@ const App = () => {
     }
   };
 
+  const handleSaveRestaurant = async (restaurant) => {
+    try {
+      // Make a request to save the restaurant using the mutation
+      await saveRestaurant({
+        variables: {
+          restaurantId: restaurant.id,
+          restaurant_name: restaurant.place_name,
+          description: "Some description",
+        },
+      });
+
+      // Display a success message or update your UI accordingly
+      console.log("Restaurant saved successfully!");
+    } catch (error) {
+      console.error("Error saving restaurant:", error);
+    }
+  };
+
   return (
     <div>
       <div id="map" style={{ height: "400px" }}></div>
@@ -96,6 +118,17 @@ const App = () => {
         placeholder="Enter ZIP code"
       />
       <button onClick={handleSearch}>Search</button>
+
+      <ul>
+        {restaurants.map((restaurant) => (
+          <li key={restaurant.id}>
+            {restaurant.place_name}{" "}
+            <button onClick={() => handleSaveRestaurant(restaurant)}>
+              Save
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
