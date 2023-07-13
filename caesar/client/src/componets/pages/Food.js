@@ -5,7 +5,6 @@ import { useMutation } from "@apollo/client";
 import { SAVE_RESTAURANT } from "../../utils/mutations";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-// Set your Mapbox access token
 mapboxgl.accessToken =
   "pk.eyJ1IjoibWF0dGhld3N0YW5kaXNoIiwiYSI6ImNsamhyMTFjMzAxY2MzZnA1cnA1bjVnZHYifQ.lAIJ-JvzD7DLfUkgB6apKg";
 
@@ -19,15 +18,15 @@ const App = () => {
   const [saveRestaurant] = useMutation(SAVE_RESTAURANT);
   useEffect(() => {
     if (zipCode) {
-      handleSearch()
+      handleSearch();
     }
-  },[])
+  }, []);
   useEffect(() => {
     const initializeMap = () => {
       const newMap = new mapboxgl.Map({
         container: "map",
-        style: "mapbox://styles/mapbox/streets-v11",
-        center: [-74.5, 40],
+        style: "mapbox://styles/matthewstandish/clk1hwvsr017501qg097zckq0",
+        center: [-84.39, 33.75],
         zoom: 9,
       });
 
@@ -61,17 +60,29 @@ const App = () => {
         marker.addTo(map);
         setMarkers((prevMarkers) => [...prevMarkers, marker]);
       });
-
-      if (markers.length > 0) {
-        const bounds = new mapboxgl.LngLatBounds();
-        markers.forEach((marker) => bounds.extend(marker.getLngLat()));
-
-        map.fitBounds(bounds, {
-          padding: { top: 50, bottom: 50, left: 50, right: 50 },
-        });
-      }
     }
-  }, [map, restaurants, markers]);
+  }, [map, restaurants]);
+
+  useEffect(() => {
+    if (map) {
+      const handleMoveEnd = () => {
+        if (markers.length > 0) {
+          const bounds = new mapboxgl.LngLatBounds();
+          markers.forEach((marker) => bounds.extend(marker.getLngLat()));
+
+          map.fitBounds(bounds, {
+            padding: { top: 50, bottom: 50, left: 50, right: 50 },
+          });
+        }
+      };
+
+      map.on("moveend", handleMoveEnd);
+
+      return () => {
+        map.off("moveend", handleMoveEnd);
+      };
+    }
+  }, [map, markers]);
 
   const handleZipCodeChange = (event) => {
     setZipCode(event.target.value);
@@ -79,17 +90,21 @@ const App = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get(
+      const geocodingPromise = axios.get(
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${zipCode}.json?types=postcode&access_token=${mapboxgl.accessToken}`
       );
 
-      const [longitude, latitude] = response.data.features[0].center;
+      const geocodingResponse = await geocodingPromise;
+      const [longitude, latitude] = geocodingResponse.data.features[0].center;
 
-      const restaurantsResponse = await axios.get(
+      const restaurantsPromise = axios.get(
         `https://api.mapbox.com/geocoding/v5/mapbox.places/restaurant.json?proximity=${longitude},${latitude}&access_token=${mapboxgl.accessToken}`
       );
 
-      setRestaurants(restaurantsResponse.data.features);
+      const restaurantsResponse = await restaurantsPromise;
+      const restaurants = restaurantsResponse.data.features;
+
+      setRestaurants(restaurants);
     } catch (error) {
       console.error("Error searching for restaurants:", error);
     }
@@ -108,7 +123,7 @@ const App = () => {
 
       // Display a success message or update your UI accordingly
       console.log("Restaurant saved successfully!");
-      console.log(restaurant)
+      console.log(restaurant);
     } catch (error) {
       console.error("Error saving restaurant:", error);
     }

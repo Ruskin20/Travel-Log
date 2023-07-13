@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
-import '../Mapbox.css';
-import Footer from '../Footer';
+import "../Mapbox.css";
+import Footer from "../Footer";
 import "../Mapbox.css";
 
 mapboxgl.accessToken =
@@ -34,17 +34,15 @@ export default function Activities() {
   });
 
   return (
-    
     <>
-    <div>
-      <div className="sidebar">
-        Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+      <div>
+        <div className="sidebar">
+          Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+        </div>
+        <div ref={mapContainer} className="map-container" />
       </div>
-      <div ref={mapContainer} className="map-container" />
-    </div>
 
-
-<Footer />
-</>
+      <Footer />
+    </>
   );
 }
