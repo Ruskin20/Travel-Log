@@ -71,6 +71,15 @@ function Navbar() {
             </li>
             <li className='nav-item'>
               <Link
+                to='/savedplaces'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Saved
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
                 to='/'
                 className='nav-links'
                 onClick={() => Auth.logout()}
@@ -106,7 +115,7 @@ function Navbar() {
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-               Option1
+               Food
               </Link>
             </li>
             <li className='nav-item'>
@@ -115,7 +124,7 @@ function Navbar() {
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Option2
+                Entertainment
               </Link>
             </li>
             <li className='nav-item'>
@@ -124,7 +133,7 @@ function Navbar() {
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Option3
+                Adventure
               </Link>
             </li>
 

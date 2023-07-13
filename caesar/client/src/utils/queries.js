@@ -10,7 +10,6 @@ export const QUERY_ME = gql`
                 restaurantId
                 restaurant_name
                 description
-                authors
                 image
                 link
             }
