@@ -102,29 +102,29 @@ function Navbar() {
             </li>
             <li className='nav-item'>
               <Link
-                to='/option1'
+                to='/food'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-               Option1
+               Food
               </Link>
             </li>
             <li className='nav-item'>
               <Link
-                to='/option2'
+                to='/entertainment'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Option2
+                Entertainment
               </Link>
             </li>
             <li className='nav-item'>
               <Link
-                to='/option3'
+                to='/adventures'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Option3
+                Adventures
               </Link>
             </li>
 
