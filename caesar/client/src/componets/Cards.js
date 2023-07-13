@@ -17,7 +17,7 @@ function Cards() {
             />
             <CardItem
               src='./images/EntertainmentPic.jpg'
-              text='We could put picture of Entertainment here'
+              text='Find your favorite entertainment here'
               label='Entertainment'
               path='/option2'
             />
@@ -25,7 +25,7 @@ function Cards() {
           <ul className='cards__items'>
             <CardItem
               src='./images/AdventurePic.jpg'
-              text='We could put picture of Adventure here'
+              text='Find your favorite adventure here'
               label='Adventure'
               path='/option3'
             />
