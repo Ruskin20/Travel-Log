@@ -28,7 +28,7 @@ const App = () => {
       const newMap = new mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/matthewstandish/clk1jnuv4017g01nm7l93c2uj",
-        center: [-84.39, 33.75],
+        center: [-96.8, 32.78],
         zoom: 9,
       });
 
@@ -151,6 +151,7 @@ const App = () => {
         <option value="trailhead">Trails</option>
         <option value="campground">Camps</option>
         <option value="beach">Beaches</option>
+        <option value="forest">Forests</option>
       </select>
 
       <button onClick={handleSearch}>Search</button>

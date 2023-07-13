@@ -11,6 +11,7 @@ mapboxgl.accessToken =
 const App = () => {
   const history = useHistory();
   const [zipCode, setZipCode] = useState(history.location.state?.zipcode);
+  const [poiType, setPoiType] = useState("");
   const [restaurants, setRestaurants] = useState([]);
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState([]);
@@ -88,6 +89,10 @@ const App = () => {
     setZipCode(event.target.value);
   };
 
+  const handlePoiTypeChange = (event) => {
+    setPoiType(event.target.value);
+  };
+
   const handleSearch = async () => {
     try {
       const geocodingPromise = axios.get(
@@ -98,7 +103,7 @@ const App = () => {
       const [longitude, latitude] = geocodingResponse.data.features[0].center;
 
       const restaurantsPromise = axios.get(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/restaurant.json?proximity=${longitude},${latitude}&access_token=${mapboxgl.accessToken}`
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${poiType}.json?proximity=${longitude},${latitude}&access_token=${mapboxgl.accessToken}`
       );
 
       const restaurantsResponse = await restaurantsPromise;
@@ -139,12 +144,27 @@ const App = () => {
         onChange={handleZipCodeChange}
         placeholder="Enter ZIP code"
       />
+
+      <select value={poiType} onChange={handlePoiTypeChange}>
+        <option value="">Select POI Type</option>
+        <option value="breakfast_restaurant">Breakfast</option>
+        <option value="brunch_restaurant">Brunch</option>
+        <option value="dinner_restaurant">Dinner</option>
+        <option value="cafe">Cafe</option>
+        <option value="mexican_restaraunt">Mexican</option>
+        <option value="american_restaraunt">American</option>
+        <option value="asian_restaurant">Asian</option>
+        <option value="chinese_restaurant">Chinese</option>
+        <option value="mediterranean_restaurant">Mediteranean</option>
+        <option value="barbeque_restaurant">Barbeque</option>
+      </select>
+
       <button onClick={handleSearch}>Search</button>
 
       <ul>
         {restaurants.map((restaurant) => (
           <li key={restaurant.id}>
-            {restaurant.place_name}{" "}
+            {restaurant.place_name}
             <button onClick={() => handleSaveRestaurant(restaurant)}>
               Save
             </button>
