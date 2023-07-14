@@ -2,13 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
-
-In the project directory, you can run:
-
 ## Deployment
 
 [Caesar || Heroku App](https://afternoon-mesa-22613-3fdd9a909bc7.herokuapp.com/)
+
+## Available Scripts
+
+In the project directory, you can run:
 
 ### `npm start`
 
