@@ -1,2 +1,2 @@
-web: cd server && npm run watch
+web: cd server && npm run start
 client: cd client && npm start
