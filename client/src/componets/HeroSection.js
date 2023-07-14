@@ -15,7 +15,7 @@ function HeroSection() {
   function handleSubmit(event) {
     event.preventDefault();
     setShowSuccess(true);
-    history.push('/option1', {zipcode})
+    history.push("/food", { zipcode });
   }
   console.log(zipcode);
   if (Auth.loggedIn())

@@ -95,13 +95,13 @@ const App = () => {
 
   const handleSearch = async () => {
     try {
-      const geocodingResponse = await axios.get(
+      const geocodingResponse = await axios.put(
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${zipCode}.json?access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`
       );
 
       const [longitude, latitude] = geocodingResponse.data.features[0].center;
 
-      const adventuresResponse = await axios.get(
+      const adventuresResponse = await axios.put(
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${poiType}.json?proximity=${longitude},${latitude}&access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`
       );
 
