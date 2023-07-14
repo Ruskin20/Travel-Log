@@ -27,7 +27,7 @@ function Cards() {
               src='./images/AdventurePic.jpg'
               text='Find your favorite adventure here'
               label='Adventure'
-              path='/adventures'
+              path='/adventure'
             />
           </ul>
 
