@@ -1,0 +1,1 @@
+web: node ../caesar/client/src/index.js
