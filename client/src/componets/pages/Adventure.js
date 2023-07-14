@@ -7,9 +7,6 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 import "../Adventure.css";
 
-mapboxgl.accessToken =
-  "pk.eyJ1IjoibWF0dGhld3N0YW5kaXNoIiwiYSI6ImNsamhyMTFjMzAxY2MzZnA1cnA1bjVnZHYifQ.lAIJ-JvzD7DLfUkgB6apKg";
-
 const App = () => {
   const history = useHistory();
   const [zipCode, setZipCode] = useState(history.location.state?.zipcode);
@@ -103,7 +100,7 @@ const App = () => {
       const geocodingResponse = await geocodingPromise;
       const [longitude, latitude] = geocodingResponse.data.features[0].center;
 
-      const adventuresPromise = axios.get(
+      const adventuresPromise = axios.put(
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${poiType}.json?proximity=${longitude},${latitude}&access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`
       );
 

@@ -101,7 +101,7 @@ const App = () => {
       const geocodingResponse = await geocodingPromise;
       const [longitude, latitude] = geocodingResponse.data.features[0].center;
 
-      const activitiesPromise = axios.get(
+      const activitiesPromise = axios.put(
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${poiType}.json?proximity=${longitude},${latitude}&access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`
       );
 
