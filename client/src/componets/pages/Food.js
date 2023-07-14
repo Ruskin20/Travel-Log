@@ -94,7 +94,7 @@ const App = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get(
+      const response = await axios.put(
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${zipCode}.json?types=postcode&access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`
       );
 
