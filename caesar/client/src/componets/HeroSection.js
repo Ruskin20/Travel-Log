@@ -15,7 +15,7 @@ function HeroSection() {
   function handleSubmit(event) {
     event.preventDefault();
     setShowSuccess(true);
-    history.push('/option1', {zipcode})
+    history.push('/food', {zipcode})
   }
   console.log(zipcode);
   if (Auth.loggedIn())
@@ -59,7 +59,7 @@ function HeroSection() {
               type="search"
               placeholder="Enter zip code"
             />
-            <Button buttonStyle="btn--primary">Search</Button>
+            <Button id="searchBtn" buttonStyle="btn--primary">Search</Button>
           </form>
           <Link to="/login" className="login" onClick={console.log("hey")}>
             Log In <i className="far fa-play-circle" />
