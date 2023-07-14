@@ -26,8 +26,8 @@ To run the code locally:<br>
 
 ## Visuals
 
-![](./caesar/client/public/images/Screenshot2.png)
-![](./caesar/client/public/images/Screenshot1.png)
+![](./client/public/images/Screenshot2.png)
+![](./client/public/images/Screenshot1.png)
 
 ## Credits
 - Jakob Stephens: Schemas / Models/ Routes 
