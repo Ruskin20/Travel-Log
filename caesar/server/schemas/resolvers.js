@@ -110,7 +110,7 @@ const resolvers = {
         return User.findOneAndUpdate(
           { _id: context.user._id },
           {
-            $pull: { savedAdventures: { adventureId: Id } },
+            $pull: { savedAdventures: { adventureId: adventureId } },
           },
           { new: true }
         );

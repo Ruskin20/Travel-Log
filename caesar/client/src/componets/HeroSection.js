@@ -38,7 +38,7 @@ function HeroSection() {
             <br />
             <br />
             <button type="submit" className="submitBtn">
-              Submit
+              Search
             </button>
           </form>
           {showSuccess && <p id="log">Zip Code submitted!</p>}

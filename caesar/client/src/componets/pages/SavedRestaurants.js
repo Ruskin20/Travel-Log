@@ -82,7 +82,7 @@ const SavedRestaurants = () => {
         </Container>
       </div>
       <Container>
-        <h2 className="pt-5">
+        <h2 id="header" className="pt-5">
           {userData.savedRestaurants && userData.savedRestaurants.length
             ? `Viewing ${userData.savedRestaurants.length} saved ${
                 userData.savedRestaurants.length === 1
@@ -122,7 +122,7 @@ const SavedRestaurants = () => {
           </Container>
         </div>
         <Container>
-          <h2 className="pt-5">
+          <h2 id="header" className="pt-5">
             {userData.savedVenues && userData.savedVenues.length
               ? `Viewing ${userData.savedVenues.length} saved ${
                   userData.savedVenues.length === 1 ? "venue" : "venues"
@@ -159,7 +159,7 @@ const SavedRestaurants = () => {
           </Container>
         </div>
         <Container>
-          <h2 className="pt-5">
+          <h2 id="header" className="pt-5">
             {userData.savedAdventures && userData.savedAdventures.length
               ? `Viewing ${userData.savedAdventures.length} saved ${
                   userData.savedAdventures.length === 1
@@ -198,3 +198,4 @@ const SavedRestaurants = () => {
 };
 
 export default SavedRestaurants;
+
