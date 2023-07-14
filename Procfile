@@ -1,1 +1,1 @@
-web: node ../caesar/client/src/index.js
+web: npm run develop
