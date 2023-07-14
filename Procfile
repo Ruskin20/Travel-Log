@@ -1,1 +1,2 @@
-web: npm run develop
+web: cd server && npm run watch
+client: cd client && npm start
