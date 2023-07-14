@@ -3,26 +3,28 @@ import mapboxgl from "mapbox-gl";
 import axios from "axios";
 import { useMutation } from "@apollo/client";
 import { SAVE_ADVENTURE } from "../../utils/mutations";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-
+import { useHistory } from "react-router-dom";
 import "../Adventure.css";
 
 const App = () => {
   const history = useHistory();
-  const [zipCode, setZipCode] = useState(history.location.state?.zipcode);
+  const [zipCode, setZipCode] = useState(history.location.state?.zipcode || "");
   const [poiType, setPoiType] = useState("");
   const [adventures, setAdventures] = useState([]);
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState([]);
 
   const [saveAdventure] = useMutation(SAVE_ADVENTURE);
+
   useEffect(() => {
     if (zipCode) {
       handleSearch();
     }
-  }, []);
+  }, [zipCode]);
+
   useEffect(() => {
     const initializeMap = () => {
+      mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
       const newMap = new mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/matthewstandish/clk1jnuv4017g01nm7l93c2uj",
@@ -60,7 +62,7 @@ const App = () => {
         setMarkers((prevMarkers) => [...prevMarkers, marker]);
       });
     }
-  }, [map, adventures]);
+  }, [map, adventures, markers]);
 
   useEffect(() => {
     if (map) {
@@ -93,18 +95,16 @@ const App = () => {
 
   const handleSearch = async () => {
     try {
-      const geocodingPromise = axios.put(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${zipCode}.json?types=postcode&access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`
+      const geocodingResponse = await axios.get(
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${zipCode}.json?access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`
       );
 
-      const geocodingResponse = await geocodingPromise;
       const [longitude, latitude] = geocodingResponse.data.features[0].center;
 
-      const adventuresPromise = axios.put(
+      const adventuresResponse = await axios.get(
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${poiType}.json?proximity=${longitude},${latitude}&access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`
       );
 
-      const adventuresResponse = await adventuresPromise;
       const adventures = adventuresResponse.data.features;
 
       setAdventures(adventures);
@@ -142,7 +142,6 @@ const App = () => {
       />
 
       <select value={poiType} onChange={handlePoiTypeChange}>
-        {" "}
         <option value="">Select POI Type</option>
         <option value="park">Parks</option>
         <option value="lake">Lakes</option>
