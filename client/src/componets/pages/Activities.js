@@ -3,12 +3,12 @@ import mapboxgl from "mapbox-gl";
 import axios from "axios";
 import { useMutation } from "@apollo/client";
 import { SAVE_VENUE } from "../../utils/mutations";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
 import "../Act.css";
 
 const App = () => {
   const history = useHistory();
-  const [zipCode, setZipCode] = useState(history.location.state?.zipcode);
+  const [zipCode, setZipCode] = useState(history.location.state?.zipcode || "");
   const [poiType, setPoiType] = useState("");
   const [activities, setActivities] = useState([]);
   const [map, setMap] = useState(null);
@@ -20,10 +20,11 @@ const App = () => {
     if (zipCode) {
       handleSearch();
     }
-  }, []);
+  }, [zipCode]);
 
   useEffect(() => {
     const initializeMap = () => {
+      mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
       const newMap = new mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/matthewstandish/clk1kpw6y01ai01qvc60j51jd",
@@ -61,7 +62,7 @@ const App = () => {
         setMarkers((prevMarkers) => [...prevMarkers, marker]);
       });
     }
-  }, [map, activities]);
+  }, [map, activities, markers]);
 
   useEffect(() => {
     if (map) {
@@ -94,18 +95,16 @@ const App = () => {
 
   const handleSearch = async () => {
     try {
-      const geocodingPromise = axios.put(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${zipCode}.json?types=postcode&access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`
+      const geocodingResponse = await axios.get(
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${zipCode}.json?access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`
       );
 
-      const geocodingResponse = await geocodingPromise;
       const [longitude, latitude] = geocodingResponse.data.features[0].center;
 
-      const activitiesPromise = axios.get(
+      const activitiesResponse = await axios.get(
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${poiType}.json?proximity=${longitude},${latitude}&access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`
       );
 
-      const activitiesResponse = await activitiesPromise;
       const activities = activitiesResponse.data.features;
 
       setActivities(activities);

@@ -100,7 +100,7 @@ const App = () => {
 
       const [longitude, latitude] = response.data.features[0].center;
 
-      const restaurantsResponse = await axios.get(
+      const restaurantsResponse = await axios.put(
         `https://api.mapbox.com/geocoding/v5/mapbox.places/restaurant.json?proximity=${longitude},${latitude}&access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`
       );
 
